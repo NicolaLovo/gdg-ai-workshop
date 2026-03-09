@@ -32,5 +32,7 @@ export class ExerciseChat extends BaseChat {
 
   public async evaluate(studentAttempt: string): Promise<{
     message: AiChatMessage;
-  }> {}
+  }> {
+    return null as any;
+  }
 }
