@@ -1,6 +1,6 @@
 import { GoogleGenAI, type Chat } from "@google/genai";
 import { BaseChat } from "./tools/BaseChat.js";
-import type { AiChatMessage } from "./types/ai/AiChatMessage.js";
+import type { EvaluationGridCompiled } from "./types/exercise/EvaluationGridCompiled.js";
 import type { Exercise } from "./types/exercise/Exercise.js";
 
 interface ExerciseChatProps {
@@ -8,6 +8,9 @@ interface ExerciseChatProps {
   socketId: string;
 }
 
+/**
+ * Step 1: inserimento api key
+ */
 const geminiAi = new GoogleGenAI({
   apiKey: "",
 });
@@ -65,7 +68,8 @@ ${this.exercise.solution}`,
   }
 
   public async evaluate(studentAttempt: string): Promise<{
-    message: AiChatMessage;
+    evaluationGridCompiled: EvaluationGridCompiled;
+    comment: string;
   }> {
     const response = await this.chat.sendMessage({
       message: [
@@ -123,12 +127,8 @@ ${studentAttempt}`,
     );
 
     return {
-      message: {
-        role: "assistant",
-        type: "evaluation",
-        evaluationGridCompiled: evaluationGridCompiled,
-        comment: result.comment,
-      },
+      evaluationGridCompiled: evaluationGridCompiled,
+      comment: result.comment,
     };
   }
 }
