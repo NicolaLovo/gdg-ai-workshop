@@ -56,7 +56,14 @@ export const initWss = (server: any) => {
 
       const result = await handle.evaluate(body.attempt);
 
-      callback(result);
+      callback({
+        message: {
+          type: "evaluation",
+          role: "assistant",
+          evaluationGridCompiled: result.evaluationGridCompiled,
+          comment: result.comment,
+        },
+      });
     });
 
     socket.on("client-exercise.chat.disconnect", async (body, callback) => {
