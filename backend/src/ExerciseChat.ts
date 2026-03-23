@@ -126,9 +126,6 @@ ${studentAttempt}`,
       result,
     );
 
-    return {
-      evaluationGridCompiled: evaluationGridCompiled,
-      comment: result.comment,
-    };
+    return evaluationGridCompiled;
   }
 }
