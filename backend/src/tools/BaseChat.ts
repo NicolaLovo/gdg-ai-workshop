@@ -24,7 +24,10 @@ export class BaseChat {
   protected buildEvaluationGridCompiled(
     evaluationGrid: EvaluationGrid,
     evaluationGridByAi: EvaluationGridCompiledByAi,
-  ) {
+  ): {
+    evaluationGridCompiled: EvaluationGridCompiled;
+    comment: string;
+  } {
     const evaluationGridCompiled: EvaluationGridCompiled = {
       indicators: [],
     };
@@ -42,6 +45,6 @@ export class BaseChat {
         reason: resultIndicator.reason,
       });
     }
-    return evaluationGridCompiled;
+    return { evaluationGridCompiled, comment: evaluationGridByAi.comment };
   }
 }
