@@ -121,10 +121,7 @@ ${studentAttempt}`,
 
     const result = JSON.parse(response.text ?? "");
 
-    const evaluationGridCompiled = this.buildEvaluationGridCompiled(
-      this.exercise.evaluationGrid,
-      result,
-    );
+    const evaluationGridCompiled = this.buildEvaluationGridCompiled(result);
 
     return evaluationGridCompiled;
   }

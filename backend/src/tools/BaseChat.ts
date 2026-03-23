@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import type { EvaluationGrid } from "../types/exercise/EvaluationGrid.js";
 import type {
   EvaluationGridCompiled,
   EvaluationGridCompiledByAi,
@@ -22,7 +21,6 @@ export class BaseChat {
     this.exercise = exercise;
   }
   protected buildEvaluationGridCompiled(
-    evaluationGrid: EvaluationGrid,
     evaluationGridByAi: EvaluationGridCompiledByAi,
   ): {
     evaluationGridCompiled: EvaluationGridCompiled;
@@ -31,6 +29,7 @@ export class BaseChat {
     const evaluationGridCompiled: EvaluationGridCompiled = {
       indicators: [],
     };
+    const evaluationGrid = this.exercise.evaluationGrid;
 
     for (let i = 0; i < evaluationGridByAi.indicators.length; i++) {
       const resultIndicator = evaluationGridByAi.indicators[i];
